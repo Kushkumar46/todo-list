@@ -7,7 +7,7 @@ function Todolist_component() {
     const [id,setid]=useState('')
 
 
-
+// get the data from localStorage
     const localStorageget=()=>{
         const gets= localStorage.getItem("todolist")
         if(gets){
@@ -58,6 +58,7 @@ function Todolist_component() {
         
     }
 
+    // store the data in localStorage
     useEffect(()=>{
         localStorage.setItem("todolist",JSON.stringify(nnn))
     },[nnn])
