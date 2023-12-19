@@ -16,7 +16,7 @@ function Todolist_component() {
          return []
         }
      }
-    const [nnn,setnnn]=useState(localStorageget())
+    const [storeData,setstoreData]=useState(localStorageget())
 
   
    
@@ -26,8 +26,8 @@ function Todolist_component() {
             alert('oops')
             
         }else if(id){
-          setnnn(
-            nnn.map((obj)=>{
+          setstoreData(
+            storeData.map((obj)=>{
                 if(obj.id==id){
                     return {
                         ...obj,name:state,
@@ -37,7 +37,6 @@ function Todolist_component() {
             })
           )
           setid('')
-          console.log(nnn)
         }
         else{
             const fun={
@@ -45,23 +44,23 @@ function Todolist_component() {
                 name:state
             }
 
-            setnnn([  fun, ...nnn])
+            setstoreData([  fun, ...storeData])
             setstate('')
         }
     }
 
     const remove=(data)=>{
-       const update=nnn.filter((obj)=>{
+       const update=storeData.filter((obj)=>{
         return obj.id !==data.id
        })
-       setnnn([...update])
+       setstoreData([...update])
         
     }
 
     // store the data in localStorage
     useEffect(()=>{
-        localStorage.setItem("todolist",JSON.stringify(nnn))
-    },[nnn])
+        localStorage.setItem("todolist",JSON.stringify(storeData))
+    },[storeData])
    
 
 
@@ -97,7 +96,7 @@ const edit=(data)=>{
                     )
                 })}
             <div className='button-div'>
-             <button className='button' onClick={()=>setnnn([])}><span>Cheakist</span></button>
+             <button className='button' onClick={()=>setstoreData([])}><span>Cheakist</span></button>
            </div>        
         </div>
     </div>
@@ -108,5 +107,3 @@ const edit=(data)=>{
 export default Todolist_component
 
 
-//  <i className='far fa-edit'></i>
-{/* <i className="far fa-trash-alt add-btn" onClick={()=>remove(obj)}></i>  */}
